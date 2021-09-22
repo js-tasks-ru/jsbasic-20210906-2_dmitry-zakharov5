@@ -1,5 +1,4 @@
 let calculator = {
-  // ваш код
   firstValue: null,
   secondValue: null,
   
