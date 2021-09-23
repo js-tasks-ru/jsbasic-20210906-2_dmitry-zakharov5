@@ -1,5 +1,3 @@
 function namify(users) {
-  return users.map((item) => {
-   return item['name']
-  })
+  return users.map((item) => item['name'])
 }
