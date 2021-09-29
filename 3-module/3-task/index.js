@@ -1,9 +1,7 @@
 function camelize(str) {
   let splitedArray = str.split('-');
   let modifiedArray = splitedArray.map((item, i) => {  
-    if (item === '') {
-      return;
-    } else if (i === 0) {
+    if (i === 0) {
       return item.toLowerCase();
     } else {
       return item[0].toUpperCase() + item.slice(1);
