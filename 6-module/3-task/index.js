@@ -3,11 +3,11 @@ import createElement from '../../assets/lib/create-element.js';
 export default class Carousel {
   constructor(slides) {
     this.slides = slides;
-    this.rootElement = this.createRootElement(slides);
+    this.rootElement = this.createRootElement();
     this.initAddEventListener();
     this.addProductInCart();
   }
-  createRootElement(slides) {
+  createRootElement() {
     return createElement(`
     <div class="carousel">
       <div class="carousel__arrow carousel__arrow_right">
@@ -17,7 +17,7 @@ export default class Carousel {
         <img src="/assets/images/icons/angle-left-icon.svg" alt="icon">
       </div>
       <div class="carousel__inner">
-        ${slides.map((slide) => `
+        ${this.slides.map((slide) => `
         <div class="carousel__slide" data-id="${slide.id}">
         <img src="/assets/images/carousel/${slide.image}" class="carousel__img" alt="slide">
         <div class="carousel__caption">
