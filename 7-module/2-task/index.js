@@ -48,9 +48,10 @@ export default class Modal {
     if (document.body.classList.contains('is-modal-open')) {
       document.body.classList.remove('is-modal-open');
     }
-    
-    const modalContainer = document.querySelector('.container');
-    modalContainer.remove();
+    const modalContainer = Array.from(document.querySelectorAll('.container'));
+    modalContainer.forEach((item) => {
+      item.remove();
+    });
   }
   initAddEventListener() {
     const closeButton = this.template.querySelector('.modal__close');
@@ -58,15 +59,13 @@ export default class Modal {
       this.close();
     }, {onсe: true});
 
-    document.addEventListener('keydown', 
-      (event) => {
-        {
-          if (event.code === 'Escape') {
-            event.preventDefault();
-            this.close();
-          }
-          return;
-        }
-      }, {once: true});
+    document.addEventListener('keydown', (event) => {
+      if (event.code === 'Escape') {
+        event.preventDefault();
+        this.close();
+      }
+      return;
+        
+    }, {once: true});
   }
 }
