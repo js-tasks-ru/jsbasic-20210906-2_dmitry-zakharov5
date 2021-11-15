@@ -60,7 +60,7 @@ export default class StepSlider {
       thumb.style.left = `${valuePercents}%`;
       progress.style.width = `${valuePercents}%`;
       sliderValue.textContent = ''; 
-      sliderValue.textContent = valuePercents;
+      sliderValue.textContent = value;
 
       let customEvent = new CustomEvent('slider-change', { 
         detail: this.value,
