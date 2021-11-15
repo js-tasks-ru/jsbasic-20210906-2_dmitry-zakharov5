@@ -46,7 +46,7 @@ export default class StepSlider {
       let value = Math.round(approximateValue);
       let valuePercents = value / segments * 100;
       this.value = value;
-      let sliderSteps = this.template.querySelector('.slider__steps');
+      const sliderSteps = this.template.querySelector('.slider__steps');
       let spans = Array.from(sliderSteps.getElementsByTagName('span'));
       spans.forEach((item, i) => {
         item.classList.remove('slider__step-active');
@@ -54,9 +54,9 @@ export default class StepSlider {
           item.classList.add('slider__step-active');
         }
       });
-      let thumb = this.template.querySelector('.slider__thumb');
-      let progress = this.template.querySelector('.slider__progress');
-      let sliderValue = this.template.querySelector('.slider__value');
+      const thumb = this.template.querySelector('.slider__thumb');
+      const progress = this.template.querySelector('.slider__progress');
+      const sliderValue = this.template.querySelector('.slider__value');
       thumb.style.left = `${valuePercents}%`;
       progress.style.width = `${valuePercents}%`;
       sliderValue.textContent = ''; 
