@@ -38,10 +38,8 @@ export default class CartIcon {
   }
 
   updatePosition() {
-    let documentHeight = window.innerHeight + window.pageYOffset;
-    let bodyHeight = document.body.offsetHeight;
-    let initialTopCoord = this.elem.getBoundingClientRect().top + window.pageYOffset;
-    if (window.pageYOffset > initialTopCoord || documentHeight >= bodyHeight) {
+    let initialTopCoord = this.elem.getBoundingClientRect().top;
+    if (window.pageYOffset > initialTopCoord) {
       let rightIndentOfContainer = document.querySelector('.container').getBoundingClientRect().right + 20;
       let minRightIndentOfDocument = document.documentElement.clientWidth - this.elem.offsetWidth - 10;
       let leftIndent = Math.min(rightIndentOfContainer, minRightIndentOfDocument) + 'px';
