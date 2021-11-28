@@ -3,6 +3,7 @@ import ProductCard from '../../6-module/2-task/index.js';
 
 export default class ProductGrid {
   constructor(products) {
+    this.allProd = products;
     this.products = products;
     this.filters = {};
     this.template = this.createTemplate();
@@ -36,7 +37,7 @@ export default class ProductGrid {
     }
   }
 
-  filterProducts(array, filter) {
+  enabledFilter(array, filter) {
 
     const sortingByCategory = array.filter((product) => {
 
@@ -46,7 +47,6 @@ export default class ProductGrid {
             
       if (filter.vegeterianOnly) {
         return product.vegeterian;
-          
       }
             
       if (filter.maxSpiciness < 4) {
@@ -61,14 +61,31 @@ export default class ProductGrid {
     return sortingByCategory;
   }
 
-
   updateFilter(filters) {
     this.filters = {...this.filters, ...filters };
-    this.products = this.filterProducts(this.products, filters);
-    this.clearProductsInner(); 
-    this.renderCards(this.products);
+    
+    if (this.filters.noNuts || this.filters.vegeterianOnly || this.filters.maxSpiciness < 4 || this.filters.category !== '') {
+      this.products = this.enabledFilter(this.products, filters);
+      this.clearProductsInner(); 
+      this.renderCards(this.products); 
+    }
+
+    if (this.filters.noNuts === false || this.filters.vegeterianOnly === false || this.filters.maxSpiciness >= 4 || this.filters.category === '') {
+      this.products = this.enabledFilter(this.allProd, this.filters);
+      this.clearProductsInner(); 
+      this.renderCards(this.products); 
+    }
+
+    if (this.filters.noNuts === false && this.filters.vegeterianOnly === false && this.filters.maxSpiciness >= 4 && this.filters.category === '') {
+      this.products = this.allProd;
+      this.clearProductsInner();
+      this.renderCards(this.products); 
+    }
   }
-   
+      
 }
+
+
+  
 
 
