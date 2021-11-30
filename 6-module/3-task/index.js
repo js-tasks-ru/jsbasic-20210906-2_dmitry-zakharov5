@@ -38,43 +38,57 @@ export default class Carousel {
   }
 
   initAddEventListener() {
+    const carouselTape = this.rootElement.querySelector('.carousel__inner');
     const forwardArrow = this.rootElement.querySelector('.carousel__arrow_right');
     const backArrow = this.rootElement.querySelector('.carousel__arrow_left');
     const carouselSlide = this.rootElement.querySelectorAll('.carousel__slide');
     let position = 0;
     let counter = 1;
+
     if (counter === 1) {
       backArrow.style.display = 'none';
     }
-    function moveTapeForward() {
-      const carouselTape = document.querySelector('.carousel__inner');
+
+    let moveTapeForward = () => {
       let tapeOffsetWidh = carouselTape.offsetWidth;
+
       counter++;
+
       position += tapeOffsetWidh;
+
       carouselTape.style.transform = 'translateX(-' + position + 'px)';
+
       if (counter > 1) {
         backArrow.style.display = '';
       }
+
       if (counter === carouselSlide.length) {
         forwardArrow.style.display = 'none';
       }
-    }
-    function moveTapeBack() {
-      const carouselTape = document.querySelector('.carousel__inner');
+    };
+
+    let moveTapeBack = () => {
       let tapeOffsetWidh = carouselTape.offsetWidth;
+
       --counter;
+
       position -= tapeOffsetWidh;
+
       carouselTape.style.transform = 'translateX(-' + position + 'px)';
+
       if (counter > 1) {
         backArrow.style.display = '';
       }
+
       if (counter === 1) {
         backArrow.style.display = 'none';
       }
+
       if (counter < carouselSlide.length) {
         forwardArrow.style.display = '';
       }
-    }
+    };
+
     forwardArrow.addEventListener('click', moveTapeForward, false);
     backArrow.addEventListener('click', moveTapeBack, false);
   }
@@ -82,12 +96,14 @@ export default class Carousel {
   addProductInCart() {
     this.rootElement.addEventListener('click', (event) => {
       const target = event.target;
+
       if (target.classList.contains('carousel__button') || target.closest('.carousel__button')) {
         let currentSlide = target.closest('.carousel__slide');
         let customEvent = new CustomEvent('product-add', {
           detail: currentSlide.dataset.id,
           bubbles: true,
         });
+
         this.rootElement.dispatchEvent(customEvent);
       }
     });

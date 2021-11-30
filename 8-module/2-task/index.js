@@ -25,10 +25,11 @@ export default class ProductGrid {
 
   renderCards() {
     for (let product of this.products) {
-      if (this.filters.noNuts && product.nuts) {continue;} 
+      if (this.filters.noNuts && product.nuts) {continue;}
       if (this.filters.vegeterianOnly && !product.vegeterian) {continue;} 
       if (this.filters.maxSpiciness && product.spiciness > this.filters.maxSpiciness) {continue;} 
       if (this.filters.category && product.category !== this.filters.category) {continue;}
+
       let card = new ProductCard(product);
       this.productsInner.append(card.elem);
     }
