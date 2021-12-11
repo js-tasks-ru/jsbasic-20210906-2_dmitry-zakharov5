@@ -113,33 +113,32 @@ export default class Cart {
 
   renderOrderForm() {
     return createElement(`<form class="cart-form">
-      <h5 class="cart-form__title">Delivery</h5>
-      <div class="cart-form__group cart-form__group_row">
-        <input name="name" type="text" class="cart-form__input" placeholder="Name" required value="Santa Claus">
-        <input name="email" type="email" class="cart-form__input" placeholder="Email" required value="john@gmail.com">
-        <input name="tel" type="tel" class="cart-form__input" placeholder="Phone" required value="+1234567">
+    <h5 class="cart-form__title">Delivery</h5>
+    <div class="cart-form__group cart-form__group_row">
+      <input name="name" type="text" class="cart-form__input" placeholder="Name" required value="Santa Claus">
+      <input name="email" type="email" class="cart-form__input" placeholder="Email" required value="john@gmail.com">
+      <input name="tel" type="tel" class="cart-form__input" placeholder="Phone" required value="+1234567">
+    </div>
+    <div class="cart-form__group">
+      <input name="address" type="text" class="cart-form__input" placeholder="Address" required value="North, Lapland, Snow Home">
+    </div>
+    <div class="cart-buttons">
+      <div class="cart-buttons__buttons btn-group">
+        <div class="cart-buttons__info">
+          <span class="cart-buttons__info-text">total</span>
+          <span class="cart-buttons__info-price">€${this.getTotalPrice().toFixed(2)}</span>
+        </div>
+        <button type="submit" class="cart-buttons__button btn-group__button button">order</button>
       </div>
-      <div class="cart-form__group">
-        <input name="address" type="text" class="cart-form__input" placeholder="Address" required value="North, Lapland, Snow Home">
-      </div>
-      <div class="cart-buttons">
-        <div class="cart-buttons__buttons btn-group">
-          <div class="cart-buttons__info">
-            <span class="cart-buttons__info-text">total</span>
-            <span class="cart-buttons__info-price">€${this.getTotalPrice().toFixed(
-    2
-  )}</span>
-        <div> 
-          <button type="submit" class="cart-buttons__button btn-group__button button">order</button>
-          </div>
-      </div>
-    </form>`);
+    </div>
+  </form>`);
+
   }
   
   renderModal() {
     this.modal.open();
     this.modal.setTitle('Your order');
-    this. modal.setBody(createElement(`<div></div>`));
+    this.modal.setBody(createElement(`<div></div>`));
 
     const modalDiv = document.querySelector('.modal__body').firstChild;
 
@@ -148,11 +147,10 @@ export default class Cart {
     });
     
     modalDiv.append(this.renderOrderForm());
-
     const modalBody = document.querySelector('.modal__body');
-
+    const form = modalBody.querySelector('form');
+    
     modalBody.addEventListener('click', (event) => {
-      event.preventDefault();
       const target = event.target;
       const plusOrMinusBtn = target.closest('.cart-counter__button');
       let btnParent = target.closest('.cart-product');
@@ -172,15 +170,11 @@ export default class Cart {
       }
     });
 
-    const form = document.querySelector('.cart-form');
-    
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', (event)=> {
       this.onSubmit(event);
     });
+
   }
-    
-  
-  
   
   onProductUpdate(cartItem) {
     this.cartIcon.update(this);
@@ -221,7 +215,7 @@ export default class Cart {
   }
 
   onSubmit(event) {
-   // event.preventDefault();
+    event.preventDefault();
     const form = document.querySelector('.cart-form');
     const submitBtn = document.querySelector('.btn-group__button');
     
