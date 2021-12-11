@@ -53,6 +53,7 @@ export default class Modal {
       item.remove();
     });
   }
+  
   initAddEventListener() {
     const closeButton = this.template.querySelector('.modal__close');
     closeButton.addEventListener('click', () => {
