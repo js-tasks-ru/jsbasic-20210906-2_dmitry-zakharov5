@@ -3,7 +3,6 @@ export default class UserTable {
     constructor(rows) {
       this.rows = rows;
       this.#table = document.createElement('table');
-      this.removeRow = this.removeRow.bind(this);
       this.render();
     }
 

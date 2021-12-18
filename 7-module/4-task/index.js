@@ -122,7 +122,7 @@ export default class StepSlider {
         document.removeEventListener('pointermove', onMove, false);
 
       }, {once: true});
-    }, false);
+    });
 
   }
 }

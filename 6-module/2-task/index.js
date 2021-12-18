@@ -36,6 +36,6 @@ export default class ProductCard {
         });
         this.template.dispatchEvent(customEvent);
       }
-    }, false);
+    });
   }
 }
