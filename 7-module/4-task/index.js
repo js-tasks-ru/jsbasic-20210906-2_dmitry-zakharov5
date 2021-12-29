@@ -1,7 +1,7 @@
 import createElement from '../../assets/lib/create-element.js';
 
 export default class StepSlider {
-  constructor({ steps, value = 0 }) {
+  constructor({ steps, value = 3 }) {
     this.steps = steps;
     this.value = value;
     this.template = this.createTemplate();
@@ -18,7 +18,7 @@ export default class StepSlider {
     <div class="slider__progress">
     </div>
     <div class="slider__steps">
-      <span class='slider__step-active'>
+      <span class='slider__step-active'></span>
     </div>
   </div>
     `);
@@ -35,6 +35,22 @@ export default class StepSlider {
       <span></span>
       `);
     }
+  }
+  
+  defaultStep(steps, value) {
+    const thumb = this.template.querySelector('.slider__thumb');
+    const sliderSteps = this.template.querySelector('.slider__steps');
+    const progress = this.template.querySelector('.slider__progress');
+    const sliderValue = this.template.querySelector('.slider__value');
+    let segment = steps - 1;
+    let percents = (value * 100) / segment;
+    let spans = Array.from(sliderSteps.getElementsByTagName('span'));
+    spans[value].classList.add('slider__step-active');
+    thumb.style.left = `${percents}%`;
+    progress.style.width = `${percents}%`;
+    sliderValue.textContent = `${value}`; 
+    sliderValue.textContent = value;
+
   }
 
   onContainerClick(event) {
