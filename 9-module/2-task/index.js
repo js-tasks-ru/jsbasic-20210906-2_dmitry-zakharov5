@@ -28,9 +28,8 @@ export default class Main {
 
     this.stepSlider.defaultStep(5, 3);
 
-    let products = await fetch('products.json')
-    .then(response => response.json())
-    .then(c => c);
+    let response = await fetch('products.json');
+    let products = await response.json();
 
     const gridHolder = document.querySelector('[data-products-grid-holder]');
     gridHolder.removeChild(gridHolder.firstElementChild);

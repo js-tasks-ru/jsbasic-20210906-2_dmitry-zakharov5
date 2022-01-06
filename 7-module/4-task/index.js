@@ -42,6 +42,7 @@ export default class StepSlider {
     const sliderSteps = this.template.querySelector('.slider__steps');
     const progress = this.template.querySelector('.slider__progress');
     const sliderValue = this.template.querySelector('.slider__value');
+    sliderSteps.querySelector('span').classList.remove('slider__step-active');
     let segment = steps - 1;
     let percents = (value * 100) / segment;
     let spans = Array.from(sliderSteps.getElementsByTagName('span'));
