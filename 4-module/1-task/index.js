@@ -3,5 +3,4 @@ function makeFriendsList(friends) {
   let friendList = document.createElement('ul');
   friendList.innerHTML = friendsNames;
   return friendList;
- 
 }
